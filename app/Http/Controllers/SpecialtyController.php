@@ -43,6 +43,7 @@ class SpecialtyController extends Controller
        //dd($request->all());
         $this->performValidation($request);
 
+        //insertar nuevo registro
         $specialty = new Specialty();
         $specialty->name = $request->input('name');
         $specialty->description = $request->input('description');

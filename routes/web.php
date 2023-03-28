@@ -39,4 +39,11 @@ Route::delete('/doctors/{doctor}', [App\Http\Controllers\DoctorController::class
 
 
 //Patients
-//Route::resources(['patients' => PatientController::class]);
+Route::get('/patients', [App\Http\Controllers\PatientController::class, 'index'])->name('patients.index');
+Route::get('/patients/create', [App\Http\Controllers\PatientController::class, 'create'])->name('patients.create'); //form registro
+Route::get('/patients/{patient}/edit', [App\Http\Controllers\PatientController::class, 'edit'])->name('patients.edit');
+//gestiona el registro de nuevas especialidades
+Route::post('/patients', [App\Http\Controllers\PatientController::class, 'store'])->name('patients.store');//envío del form
+//gestiona lal edición de una especialidad determinada
+Route::put('/patients/{patient}', [App\Http\Controllers\PatientController::class, 'update'])->name('patients.update');
+Route::delete('/patients/{patient}', [App\Http\Controllers\PatientController::class, 'destroy'])->name('patients.destroy');
