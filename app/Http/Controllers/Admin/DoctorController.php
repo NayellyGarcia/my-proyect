@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\User;
+use App\Http\Controllers\Controller;
 
 class DoctorController extends Controller
 {
@@ -46,11 +47,6 @@ class DoctorController extends Controller
        return redirect('/doctors')->with(compact('notification'));
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function edit($id)
     {
         $doctor = User::doctors()->findOrFail($id);
@@ -75,15 +71,21 @@ class DoctorController extends Controller
        if($password)
         $data['password'] = bcrypt($password);
        
-       //$user->fill o save($data);
+       //aquí se llenan los datos, objeto  php
        $user->fill($data);
+       //consulta a la BD para hacer update
+       $user->save(); //UPDATE
 
        $notification = 'La información del médico se ha actualizado correctamente.';
        return redirect('/doctors')->with(compact('notification'));
     }
 
-    public function destroy($id)
+    public function destroy(User $doctor)
     {
-        //
+        $doctorName = $doctor->name;
+        $doctor->delete();
+
+        $notification = "El médico $doctorName se ha eliminado correctamente.";
+        return redirect('/doctors')->with(compact('notification'));
     }
 }
