@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 
 class PatientController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');

@@ -17,11 +17,23 @@ class UserTableSeeder extends Seeder
              'name' => 'Nayelly Garcia',
              'email' => 'nayellygarciac@gmail.com',
              'password' => bcrypt('hola12345'),
-             'cedula' => '76474871',
-             'address' => '',
-             'phone' => '',
              'role' => 'admin',
          ]);
+
+        \App\Models\User::factory()->create([
+             'name' => 'Paciente 1',
+             'email' => 'patient@gmail.com',
+             'password' => bcrypt('hola12345'),
+             'role' => 'patient',
+         ]);
+
+        \App\Models\User::factory()->create([
+             'name' => 'Médico 1',
+             'email' => 'doctor@gmail.com',
+             'password' => bcrypt('hola12345'),
+             'role' => 'doctor',
+         ]);
+
          User::factory()
             ->count(50)
             ->create();

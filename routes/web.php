@@ -47,6 +47,8 @@ Route::middleware(['auth', 'doctor'])->group(function () {
     Route::post('/schedule', [App\Http\Controllers\Doctor\ScheduleController::class, 'store'])->name('schedule.store');
 });
 
+    Route::get('/appointments/create', [App\Http\Controllers\AppointmentController::class, 'create'])->name('appointments.create');
+    Route::get('/appointments', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointments.store');
 /*Route::get('/specialties', 'SpecialtyController@index');
 Route::get('/specialties/create', 'SpecialtyController@create'); //form registro
 Route::get('/specialties/{specialty}/edit', 'SpecialtyController@edit');

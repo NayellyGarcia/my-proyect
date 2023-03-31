@@ -59,7 +59,9 @@
     </table>
   </div>
   <div class="card-body">
-    {{ $patients->links() }}
+    <div class="pagination justify-content-center">
+      {{ $patients->links() }}
+    </div>
   </div>
 </div>
 @endsection

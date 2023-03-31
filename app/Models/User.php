@@ -46,6 +46,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // $user->specialties
+    public function specialties()
+    {
+        return $this->belongsToMany(Specialty::class);
+    }
 
     public function scopePatients($query)
     {

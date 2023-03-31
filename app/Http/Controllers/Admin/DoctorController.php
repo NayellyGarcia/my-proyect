@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\Specialty;
 
 class DoctorController extends Controller
 {
@@ -22,11 +23,13 @@ class DoctorController extends Controller
 
     public function create()
     {
-       return view('doctors.create'); 
+        $specialties = Specialty::all();
+       return view('doctors.create', compact('specialties')); 
     }
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $rules = [
             'name' => 'required|min:3',
             'email' => 'required|email',
@@ -36,13 +39,16 @@ class DoctorController extends Controller
        ];
        $this->validate($request, $rules);
        //insertar nuevo registro | mass assignment
-       User::create(
+       $user = User::create(
             $request->only('name', 'email', 'cedula', 'address', 'phone')
         + [
          'role' => 'doctor',
          'password' => bcrypt($request->input('password'))  
         ]
        );
+
+       $user->specialties()->attach($request->input('specialties'));
+
        $notification = 'Los datos del médico se han registrado correctamente.';
        return redirect('/doctors')->with(compact('notification'));
     }
@@ -50,7 +56,10 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $doctor = User::doctors()->findOrFail($id);
-        return view('doctors.edit', compact('doctor'));
+        $specialties = Specialty::all();
+        //especificar tabla intermedia specialties.id
+        $specialty_ids = $doctor->specialties()->pluck('specialties.id');
+        return view('doctors.edit', compact('doctor', 'specialties', 'specialty_ids'));
     }
 
     public function update(Request $request, $id)
