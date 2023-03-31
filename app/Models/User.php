@@ -49,7 +49,7 @@ class User extends Authenticatable
     // $user->specialties
     public function specialties()
     {
-        return $this->belongsToMany(Specialty::class);
+        return $this->belongsToMany(Specialty::class)->withtimestamps();
     }
 
     public function scopePatients($query)

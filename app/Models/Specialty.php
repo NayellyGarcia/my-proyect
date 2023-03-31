@@ -9,9 +9,9 @@ class Specialty extends Model
 {
     use HasFactory;
 
+    // $specialty-users
     public function users()
-    {
-        // $specialty-users
-        return $this->belongsToMany(User::class);
+    {   //withTimestamps agrega valor de created y updated al registro
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 }

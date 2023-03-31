@@ -85,6 +85,8 @@ class DoctorController extends Controller
        //consulta a la BD para hacer update
        $user->save(); //UPDATE
 
+       $user->specialties()->sync($request->input('specialties'));
+
        $notification = 'La información del médico se ha actualizado correctamente.';
        return redirect('/doctors')->with(compact('notification'));
     }

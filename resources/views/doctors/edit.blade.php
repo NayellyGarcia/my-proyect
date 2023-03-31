@@ -73,7 +73,7 @@
       Guardar
     </button>
   </form>
-</div>
+  </div>
 </div>
 @endsection
 
@@ -81,7 +81,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
   <script>
   $(document).ready(() => {
-    $('#specialties').selectpicker('val', @json($specialty_ids)); //arreglo de php: {{ $specialty_ids }}; arreglo de javascript: @json($specialty_ids)
-  });  
+    $('#specialties').selectpicker('val', @json($specialty_ids));
+  });
   </script>
+<!--//arreglo de php: {{ $specialty_ids }}; arreglo de javascript: @json($specialty_ids); tal vez el comentario no vaya aquí-->
 @endsection
