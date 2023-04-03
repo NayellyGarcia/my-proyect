@@ -32,6 +32,24 @@ class UserFactory extends Factory
         ];
     }
 
+    public function patient(): Factory
+{
+    return $this->state(function (array $attributes) {
+        return [
+            'role' => 'patient',
+        ];
+    });
+}
+
+public function doctor(): Factory
+{
+    return $this->state(function (array $attributes) {
+        return [
+            'role' => 'doctor',
+        ];
+    });
+}
+
     /**
      * Indicate that the model's email address should be unverified.
      */

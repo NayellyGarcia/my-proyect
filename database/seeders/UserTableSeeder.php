@@ -36,6 +36,7 @@ class UserTableSeeder extends Seeder
 
          User::factory()
             ->count(50)
+            ->state('patient')
             ->create();
     }
 }

@@ -52,7 +52,8 @@ Route::middleware(['auth', 'doctor'])->group(function () {
         Route::get('/appointments', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointments.store');
 
         // JSON
-        Route::get('/specialties/{specialty}/doctors', [App\Http\Controllers\Api\SpecialtyController::class, 'doctor'])->name('specialties.doctor');
+        Route::get('/specialties/{specialty}/doctors', [App\Http\Controllers\Api\SpecialtyController::class, 'doctors'])->name('specialties.doctors');
+        Route::get('/schedule/hours', [App\Http\Controllers\Api\ScheduleController::class, 'hours'])->name('schedule.hours');
     });    
 
 /*Route::get('/specialties', 'SpecialtyController@index');

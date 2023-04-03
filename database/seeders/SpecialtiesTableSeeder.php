@@ -19,10 +19,13 @@ class SpecialtiesTableSeeder extends Seeder
             'Pediatría',
             'Neurología',
         ];
-        foreach ($specialties as $specialty){
-        Specialty::create([
-                'name' => $specialty
+        foreach ($specialties as $specialtyName){
+        $specialty = Specialty::create([
+                'name' => $specialtyName
             ]);
+        $specialty->users()->save(
+        User::factory()->count(1)->state('doctor')->make()
+            );
         }
     }
 }
